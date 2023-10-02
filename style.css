@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(122, 179, 127);
+  color: rgb(228, 173, 133);
+}
+
+main {
+  width: 1024px;
+  margin: 3rem auto;
+  display: grid;
+  grid-template-columns: 1fr 10% 1fr 40%;
+  grid-template-rows: 14rem 3rem 6rem 6rem 6em;
+}
+
+h1 {
+  font-size: 5rem;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+section {
+  border: 1px solid black;
+  display: flex;
+  width: 800px;
+  justify-content: center;
+  align-items: center;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+section img {
+  align-items: center;
+  width: 150px;
+  max-height: 26rem;
+  border: 5px solid transparent;
+}
+
+section img:hover {
+  border: 5px solid rosybrown;
+}
+
+section + div {
+  background-color: rgb(131, 38, 38);
+  color: lightgray;
+  padding: 0.5rem 1rem;
+  width: max-content;
+  height: max-content;
+  margin: 1rem;
+}
+
+section + div.clicks-allowed {
+  background-color: rosybrown;
+  color: white;
+  cursor: pointer;
+}
+
+section + div.clicks-allowed:hover {
+  background-color: rgb(211, 187, 175);
+}
