@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./app.js" defer></script>
 
     <title>Odd Ducks</title>
@@ -12,22 +13,53 @@
   <body>
     <main>
       <h1>Odd Ducks</h1>
-      <section>
+      <section id="img-section">
         <img
           src="https://github.com/Tech-Educators/sept-2023-bootcamp/blob/main/201/class-11/lab/assets/shark.jpg?raw=true"
-          alt="Shark"
+          alt="shark"
         />
         <img
           src="https://github.com/Tech-Educators/sept-2023-bootcamp/blob/main/201/class-11/lab/assets/bubblegum.jpg?raw=true"
-          alt="Bubblegum"
+          alt="bubblegum"
         />
         <img
           src="https://github.com/Tech-Educators/sept-2023-bootcamp/blob/main/201/class-11/lab/assets/bathroom.jpg?raw=true"
-          alt="Bathroom"
+          alt="bathroom"
         />
       </section>
-      <div class="clicks-allowed">View Results</div>
+      <div>
+        <button class="clicks-allowed">View Results</button>
+        <ul id="click-here"></ul>
+      </div>
+
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
+      <script>
+        const ctx = document.getElementById("myChart");
+
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [
+              {
+                label: "# of Votes",
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      </script>
     </main>
-    <footer><p>footer</p></footer>
+    <footer></footer>
   </body>
 </html>
