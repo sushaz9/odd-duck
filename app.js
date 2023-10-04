@@ -65,7 +65,7 @@ function renderProducts() {
     product2Index === product3Index
   ) {
     product2Index = getRandomIndex();
-    product3Index - getRandomIndex();
+    product3Index = getRandomIndex();
   }
 
   image1.src = allProducts[product1Index].src;
@@ -87,7 +87,7 @@ function handleProductClick(event) {
     renderProducts();
   }
 
-  //userClicks++;
+  userClicks++;
 
   if (userClicks >= maxClicks) {
     alert("You have run out of votes");
