@@ -110,28 +110,38 @@ renderResults.addEventListener("click", showResults);
 
 renderProducts();
 
-// function renderChart() {
-/* <script>
-const ctx = document.getElementById("myChart");
+function renderChart() {
+  const ctx = document.getElementById("myChart");
 
-new Chart(ctx, {
-  type: "bar",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
+  const labels = [];
+  const views = [];
+  const clicks = [];
+
+  for (let i = 0; i < allProducts.length; i++) {
+    labels.push(allProducts[i].name);
+    views.push(allProducts[i].views);
+    clicks.push(allProducts[i].clicks);
+  }
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "# of Votes",
+          data: views,
+          borderWidth: 1,
+        },
+        {
+          type: "line",
+          label: "# of clicks",
+          date: clicks,
+          borderWidth: 1,
+        },
+      ],
     },
-  },
-});
-</script>  */
+  });
+}
+
+renderChart();
