@@ -8,34 +8,47 @@ let image3 = document.querySelector("section img:nth-child(3)");
 
 let renderResults = document.querySelector(".clicks-allowed");
 
-function Product(name, src) {
+const allProducts = [];
+
+function Product(name, views, clicks) {
   this.name = name;
   this.src = `./images/${name}.jpg`;
-  this.views = 0;
-  this.clicks = 0;
+  this.views = views;
+  this.clicks = clicks;
+  allProducts.push(this);
 }
 
-const allProducts = [
-  new Product("bag"),
-  new Product("banana"),
-  new Product("bathroom"),
-  new Product("boots"),
-  new Product("breakfast"),
-  new Product("bubblegum"),
-  new Product("chair"),
-  new Product("cthulhu"),
-  new Product("dog-duck"),
-  new Product("dragon"),
-  new Product("pen"),
-  new Product("pet-sweep"),
-  new Product("scissors"),
-  new Product("shark"),
-  new Product("sweep"),
-  new Product("tauntaun"),
-  new Product("unicorn"),
-  new Product("water-can"),
-  new Product("wine-glass"),
-];
+if (localStorage.getItem("allProducts") === null) {
+  new Product("bag", 0, 0);
+  new Product("banana", 0, 0);
+  new Product("bathroom", 0, 0);
+  new Product("boots", 0, 0);
+  new Product("breakfast", 0, 0);
+  new Product("bubblegum", 0, 0);
+  new Product("chair", 0, 0);
+  new Product("cthulhu", 0, 0);
+  new Product("dog-duck", 0, 0);
+  new Product("dragon", 0, 0);
+  new Product("pen", 0, 0);
+  new Product("pet-sweep", 0, 0);
+  new Product("scissors", 0, 0);
+  new Product("shark", 0, 0);
+  new Product("sweep", 0, 0);
+  new Product("tauntaun", 0, 0);
+  new Product("unicorn", 0, 0);
+  new Product("water-can", 0, 0);
+  new Product("wine-glass", 0, 0);
+} else {
+  const productsFromLs = JSON.parse(localStorage.getItem("allProducts"));
+  for (let i = 0; i < productsFromLs.length; i++) {
+    // crrate new product for each item in array and product function automatically adds it to product array
+    new Product(
+      productsFromLs[i].name,
+      productsFromLs[i].views,
+      productsFromLs[i].clicks
+    );
+  }
+}
 
 function getRandomIndex() {
   return Math.floor(Math.random() * allProducts.length);
@@ -68,20 +81,24 @@ function renderProducts() {
 }
 
 function handleProductClick(event) {
-  let clickedProduct = event.target.alt;
-
   if (event.target === productContainer) {
     alert("Please click on an image");
   } else {
     renderProducts();
   }
 
-  userClicks++;
+  //userClicks++;
 
   if (userClicks >= maxClicks) {
     alert("You have run out of votes");
+    renderChart();
+    localStorage.setItem("allProducts", JSON.stringify(allProducts));
     return;
   }
+
+  userClicks++;
+
+  let clickedProduct = event.target.alt;
 
   for (let i = 0; i < allProducts.length; i++) {
     // check if the name of the product in the array, matches the alt tag of our image
@@ -92,6 +109,8 @@ function handleProductClick(event) {
       break;
     }
   }
+
+  renderProducts();
 }
 
 productContainer.addEventListener("click", handleProductClick);
@@ -107,8 +126,6 @@ function showResults() {
 
 const viewResults = document.getElementById("click-here");
 renderResults.addEventListener("click", showResults);
-
-renderProducts();
 
 function renderChart() {
   const ctx = document.getElementById("myChart");
@@ -144,4 +161,4 @@ function renderChart() {
   });
 }
 
-renderChart();
+renderProducts();
