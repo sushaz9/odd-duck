@@ -69,6 +69,24 @@ button.clicks-allowed:hover {
   background-color: rgb(211, 187, 175);
 }
 
-/*#myChart-div {
+#myChart {
+}
 
-}*/
+#productButton {
+  background-color: rgb(131, 38, 38);
+  color: lightgray;
+  padding: 0.5rem 1rem;
+  width: max-content;
+  height: max-content;
+  margin: 1rem;
+}
+
+#productButton.clicks-allowed {
+  background-color: rosybrown;
+  color: white;
+  cursor: pointer;
+}
+
+#productButton.clicks-allowed:hover {
+  background-color: rgb(211, 187, 175);
+}

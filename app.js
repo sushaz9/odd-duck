@@ -96,8 +96,6 @@ function handleProductClick(event) {
     return;
   }
 
-  userClicks++;
-
   let clickedProduct = event.target.alt;
 
   for (let i = 0; i < allProducts.length; i++) {
@@ -151,9 +149,9 @@ function renderChart() {
           borderWidth: 1,
         },
         {
-          type: "line",
+          type: "bar",
           label: "# of clicks",
-          date: clicks,
+          data: clicks,
           borderWidth: 1,
         },
       ],
