@@ -91,7 +91,6 @@ function handleProductClick(event) {
 
   if (userClicks >= maxClicks) {
     alert("You have run out of votes");
-    renderChart();
     localStorage.setItem("allProducts", JSON.stringify(allProducts));
     return;
   }
@@ -124,39 +123,3 @@ function showResults() {
 
 const viewResults = document.getElementById("click-here");
 renderResults.addEventListener("click", showResults);
-
-function renderChart() {
-  const ctx = document.getElementById("myChart");
-
-  const labels = [];
-  const views = [];
-  const clicks = [];
-
-  for (let i = 0; i < allProducts.length; i++) {
-    labels.push(allProducts[i].name);
-    views.push(allProducts[i].views);
-    clicks.push(allProducts[i].clicks);
-  }
-
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: "# of Votes",
-          data: views,
-          borderWidth: 1,
-        },
-        {
-          type: "bar",
-          label: "# of clicks",
-          data: clicks,
-          borderWidth: 1,
-        },
-      ],
-    },
-  });
-}
-
-renderProducts();

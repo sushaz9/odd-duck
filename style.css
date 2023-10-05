@@ -17,11 +17,9 @@ main {
 }
 
 h1 {
-  font-size: 5rem;
-  grid-row-start: 1;
-  grid-row-end: 1;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  font-size: 4rem;
+  display: flex;
+  text-align: center;
 }
 
 section {
