@@ -10,6 +10,9 @@ let renderResults = document.querySelector(".clicks-allowed");
 
 const allProducts = [];
 
+//storing ref to previously seen/clicked product
+let previous = [];
+
 function Product(name, views, clicks) {
   this.name = name;
   this.src = `./images/${name}.jpg`;
@@ -62,11 +65,20 @@ function renderProducts() {
   while (
     product1Index === product2Index ||
     product1Index === product3Index ||
-    product2Index === product3Index
+    product2Index === product3Index ||
+    previous.includes(product1Index) ||
+    previous.includes(product2Index) ||
+    previous.includes(product3Index)
   ) {
+    product1Index = getRandomIndex();
     product2Index = getRandomIndex();
     product3Index = getRandomIndex();
   }
+
+  previous = [product1Index, product2Index, product3Index];
+
+  //add new product indexes to prev array
+  previous.push(product1Index, product2Index, product3Index);
 
   image1.src = allProducts[product1Index].src;
   image2.src = allProducts[product2Index].src;
